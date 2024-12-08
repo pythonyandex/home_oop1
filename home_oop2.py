@@ -2,8 +2,8 @@ file1 = open("C:\\Users\\RuslanMammadov\\Downloads\\recipes.txt", "r", encoding=
 i = 0
 output = {}
 lines = file1.readlines()
-# print(len(lines))
-# print(lines)
+
+
 while i < len(lines) - 1:
 
     dish = lines[i].rstrip()
@@ -29,12 +29,10 @@ def get_shop_list_by_dishes(dishes, person_count):
     for dish in dishes:
         for ing in output[dish]:
             if ing["ingredient_name"] in result.keys():
-                result[ing["ingredient_name"]]["quantity"] = int(
-                    result[ing["ingredient_name"]]["quantity"]) * person_count
+                result[ing["ingredient_name"]]["quantity"] = int(result[ing["ingredient_name"]]["quantity"]) * person_count
 
             else:
-                result[ing["ingredient_name"]] = {"measure": ing["measure"],
-                                                  "quantity": int(ing["quantity"]) * person_count}
+                result[ing["ingredient_name"]] = {"measure": ing["measure"],"quantity": int(ing["quantity"]) * person_count}
     return result
 
 
