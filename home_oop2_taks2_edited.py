@@ -1,12 +1,10 @@
-﻿
 def get_ing_from_line(line):
     line = line.rstrip().split("|")
-    cash = {"ingredient_name": line[0],"quantity":line[1],"measure":line[2]}
+    cash = {"ingredient_name": line[0], "quantity": line[1], "measure": line[2]}
     return cash
 
 
-def get_shop_list_by_dishes(dishes, person_count,cook_book):
-   
+def get_shop_list_by_dishes(dishes, person_count, cook_book):
     shopping_list = {}
 
     for dish in dishes:
@@ -27,13 +25,13 @@ def get_shop_list_by_dishes(dishes, person_count,cook_book):
 
 
 def extractor(lines):
-    i=0
-    output={}
-    
+    i = 0
+    output = {}
+
     while i < len(lines):
         dish_name = lines[i].strip()
         try:
-            ingredient_count = int(lines[i+1].strip())
+            ingredient_count = int(lines[i + 1].strip())
         except:
             print("incorrect ing quantity")
             return {}
@@ -52,28 +50,28 @@ def extractor(lines):
     return output
 
 
+lines = []
+file = "C:\\Users\\Ruslan\\Documents\\recipes.txt"
 
-lines=[]
-file="C:\\Users\\RuslanMammadov\\Documents\\recipes.txt"
 def parse_recipes(filepath):
     try:
         with open(filepath, "r", encoding="utf-8") as f_lines:
             for line in f_lines:
                 lines.append(line)
-            if len(lines) ==0:
+            if len(lines) == 0:
                 print("Empty File")
             else:
                 output = extractor(lines)
                 print(output)
-                result = get_shop_list_by_dishes(['Запеченный картофель', 'Омлет'], 25,output)
+                result = get_shop_list_by_dishes(['Запеченный картофель', 'Омлет'], 25, output)
                 print("00000000-")
                 print(result)
-        
+
     except:
         print("FileNotFoundError")
 
 
-cook_book =parse_recipes(file)
+cook_book = parse_recipes(file)
 if cook_book:
     shop_list = get_shop_list_by_dishes(['Запеченный картофель', 'Омлет'], 25, cook_book)
     print(shop_list)
